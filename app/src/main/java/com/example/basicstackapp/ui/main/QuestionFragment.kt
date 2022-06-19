@@ -1,35 +1,53 @@
 package com.example.basicstackapp.ui.main
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.basicstackapp.R
+import androidx.fragment.app.viewModels
+import com.example.basicstackapp.databinding.FragmentQuestionsBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class QuestionFragment : Fragment() {
 
-    companion object {
+    private val viewModel: QuestionsViewModel by viewModels()
 
-        fun newInstance() = QuestionFragment()
-    }
+    private lateinit var binding: FragmentQuestionsBinding
+    private var adapter: QuestionsAdapter? = null
 
-    private lateinit var viewModel: QuestionsViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.fragment_main, container, false)
+        binding =  FragmentQuestionsBinding.inflate(inflater, container, false)
+        binding.lifecycleOwner = viewLifecycleOwner
+        return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(QuestionsViewModel::class.java)
-        // TODO: Use the ViewModel
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setupAdapter()
+        initObservers()
+        viewModel.getQuestions()
+    }
+
+    private fun initObservers() {
+     viewModel.questionsData.observe(viewLifecycleOwner){
+         adapter?.submitList(it)
+     }
+
+    }
+
+    private fun setupAdapter() {
+        adapter = QuestionsAdapter()
+        binding.listview.adapter = adapter
+    }
+
+    companion object {
+        fun newInstance() = QuestionFragment()
     }
 
 }

@@ -1,21 +1,23 @@
 package com.example.basicstackapp.di
 
+import com.example.basicstackapp.BuildConfig
 import javax.inject.Singleton
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import com.example.basicstackapp.api.ApiService
-import com.example.basicstackapp.common.BASE_URL
-import com.example.basicstackapp.common.Constants
+import com.example.basicstackapp.api.StackApiService
 import com.example.basicstackapp.common.Constants.BASE_URL
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import retrofit2.converter.moshi.MoshiConverterFactory
 
 @Module
-class ApiModule {
+@InstallIn(SingletonComponent::class)
+class NetworkModule {
 
     @Singleton
     @Provides
@@ -27,17 +29,7 @@ class ApiModule {
 
     @Provides
     @Singleton
-    fun provideInterceptor(): HttpLoggingInterceptor {
-        val interceptor = HttpLoggingInterceptor()
-        if (BuildConfig.DEBUG) {
-            interceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
-        }
-        return interceptor
-    }
-
-    @Provides
-    @Singleton
-    fun provideOkhttpClient(interceptor: HttpLoggingInterceptor?) =
+    fun provideOkhttpClient() =
         OkHttpClient.Builder().addInterceptor(HttpLoggingInterceptor().apply {
             level = HttpLoggingInterceptor.Level.NONE
             if (BuildConfig.DEBUG) {
@@ -57,7 +49,7 @@ class ApiModule {
 
     @Provides
     @Singleton
-    fun provideApiService(retrofit: Retrofit): ApiService {
-        return retrofit.create(ApiService::class.java)
+    fun provideApiService(retrofit: Retrofit): StackApiService {
+        return retrofit.create(StackApiService::class.java)
     }
 }
