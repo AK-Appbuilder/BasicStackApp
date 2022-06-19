@@ -22,7 +22,7 @@ class QuestionsViewModel @Inject constructor(val questionRepository: QuestionRep
                 50,
                 "desc",
                 "",
-                "",
+                "stackoverflow",
                 "",
                 QUESTION_FILTER, API_KEY
             )

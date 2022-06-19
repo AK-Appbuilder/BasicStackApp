@@ -8,7 +8,6 @@ class QuestionsResponse {
     @Json(name = "has_more")
     var hasMore: Boolean? = null
 
-    @Json(name = "items")
     var items: List<Question> = emptyList()
 
     @Json(name = "quota_max")

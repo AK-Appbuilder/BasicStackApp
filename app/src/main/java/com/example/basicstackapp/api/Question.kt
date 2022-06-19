@@ -2,18 +2,13 @@ package com.example.basicstackapp.api
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
-import java.security.acl.Owner
-
 
 @JsonClass(generateAdapter = true)
 class Question {
-    @Json(name = "tags")
     var tags: List<String>? = null
 
-    @Json(name = "body")
     var body: String? = null
 
-    @Json(name = "owner")
     var owner: Owner? = null
 
     @Json(name = "is_answered")
@@ -28,7 +23,6 @@ class Question {
     @Json(name = "answer_count")
     var answerCount: Int? = null
 
-    @Json(name = "score")
     var score: Int? = null
 
     @Json(name = "last_activity_date")
@@ -43,9 +37,7 @@ class Question {
     @Json(name = "question_id")
     var questionId: Int? = null
 
-    @Json(name = "link")
     var link: String? = null
 
-    @Json(name = "title")
     var title: String? = null
 }
