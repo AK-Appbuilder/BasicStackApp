@@ -1,11 +1,11 @@
 package com.example.basicstackapp.ui.main
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.*
+import com.example.basicstackapp.R
 import com.example.basicstackapp.common.visibleIfTrue
 import com.example.basicstackapp.databinding.FragmentQuestionsBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -13,7 +13,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class QuestionFragment : Fragment() {
 
-    private val viewModel: QuestionsViewModel by viewModels()
+    private val viewModel: QuestionsViewModel by activityViewModels()
 
     private lateinit var binding: FragmentQuestionsBinding
     private var adapter: QuestionsAdapter? = null
@@ -47,7 +47,13 @@ class QuestionFragment : Fragment() {
     }
 
     private fun setupAdapter() {
-        adapter = QuestionsAdapter()
+        adapter = QuestionsAdapter(){ questionId ->
+            questionId?.let {
+                parentFragmentManager.beginTransaction()
+                    .replace(R.id.container, QuestionDetailFragment.newInstance(it))
+                    .commitNow()
+            }
+        }
         binding.listview.adapter = adapter
     }
 

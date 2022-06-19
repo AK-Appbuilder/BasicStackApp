@@ -1,6 +1,5 @@
 package com.example.basicstackapp.ui.main
 
-import android.util.Log
 import androidx.lifecycle.*
 import com.example.basicstackapp.api.Question
 import com.example.basicstackapp.api.Result
@@ -14,6 +13,9 @@ class QuestionsViewModel @Inject constructor(val questionRepository: QuestionRep
 
     private val _questionsData = MutableLiveData<List<Question>>()
      val questionsData: LiveData<List<Question>> = _questionsData
+
+    private val _questionDetail = MutableLiveData<Question>()
+    val question: LiveData<Question> = _questionDetail
 
     private val _loading = MutableLiveData<Boolean>()
      val loading: LiveData<Boolean> = _loading
@@ -44,6 +46,10 @@ class QuestionsViewModel @Inject constructor(val questionRepository: QuestionRep
                 }
             }
         }
+    }
+
+    fun loadQuestionById(questionId: Int) {
+        _questionDetail.value = _questionsData.value?.find { it.questionId == questionId }
     }
 
     companion object {

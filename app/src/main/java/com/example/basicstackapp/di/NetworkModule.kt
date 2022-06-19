@@ -6,6 +6,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import com.example.basicstackapp.api.StackApiService
 import com.example.basicstackapp.common.Constants.BASE_URL
+import com.facebook.stetho.okhttp3.StethoInterceptor
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
@@ -35,7 +36,7 @@ class NetworkModule {
             if (BuildConfig.DEBUG) {
                 level = HttpLoggingInterceptor.Level.BODY
             }
-        }).build()
+        }).addNetworkInterceptor(StethoInterceptor()).build()
 
     @Singleton
     @Provides

@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.*
 import com.example.basicstackapp.api.Question
 import com.example.basicstackapp.databinding.QuestionItemBinding
 
-class QuestionsAdapter: ListAdapter<Question, QuestionsAdapter.ViewHolder>(VoucherDiffCallback()) {
+class QuestionsAdapter (val onClick: (id: Int?)-> Unit): ListAdapter<Question, QuestionsAdapter.ViewHolder>(VoucherDiffCallback()) {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = getItem(position)
@@ -27,6 +27,9 @@ class QuestionsAdapter: ListAdapter<Question, QuestionsAdapter.ViewHolder>(Vouch
             item: Question,
         ) {
             binding.question = item
+            binding.root.setOnClickListener {
+                onClick.invoke(item.questionId)
+            }
             binding.executePendingBindings()
         }
     }
