@@ -15,6 +15,9 @@ class QuestionsViewModel @Inject constructor(val questionRepository: QuestionRep
     private val _questionsData = MutableLiveData<List<Question>>()
      val questionsData: LiveData<List<Question>> = _questionsData
 
+    private val _loading = MutableLiveData<Boolean>()
+     val loading: LiveData<Boolean> = _loading
+
     fun getQuestions() {
         viewModelScope.launch {
             val result = questionRepository.loadQuestion(
@@ -32,8 +35,11 @@ class QuestionsViewModel @Inject constructor(val questionRepository: QuestionRep
                 Result.Empty -> {}
                 is Result.Error -> {
                 }
-                Result.Loading -> {}
+                Result.Loading -> {
+                    _loading.value = true
+                }
                 is Result.Success -> {
+                    _loading.value = false
                     _questionsData.value = result.data.items
                 }
             }

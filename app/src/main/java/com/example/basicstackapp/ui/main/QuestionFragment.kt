@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import com.example.basicstackapp.common.visibleIfTrue
 import com.example.basicstackapp.databinding.FragmentQuestionsBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -38,6 +39,10 @@ class QuestionFragment : Fragment() {
      viewModel.questionsData.observe(viewLifecycleOwner){
          adapter?.submitList(it)
      }
+
+        viewModel.loading.observe(viewLifecycleOwner){
+            binding.loader.visibleIfTrue(it)
+        }
 
     }
 
