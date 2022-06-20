@@ -3,6 +3,7 @@ package com.example.basicstackapp.ui.main
 import androidx.lifecycle.*
 import com.example.basicstackapp.api.Question
 import com.example.basicstackapp.api.Result
+import com.example.basicstackapp.common.Event
 import com.example.basicstackapp.repository.QuestionRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -11,8 +12,8 @@ import javax.inject.Inject
 @HiltViewModel
 class QuestionsViewModel @Inject constructor(val questionRepository: QuestionRepository) : ViewModel() {
 
-    private val _questionsData = MutableLiveData<List<Question>>()
-     val questionsData: LiveData<List<Question>> = _questionsData
+    private val _questionsData = MutableLiveData<Event<List<Question>>>()
+     val questionsData: LiveData<Event<List<Question>>> = _questionsData
 
     private val _questionDetail = MutableLiveData<Question>()
     val question: LiveData<Question> = _questionDetail
@@ -20,10 +21,15 @@ class QuestionsViewModel @Inject constructor(val questionRepository: QuestionRep
     private val _loading = MutableLiveData<Boolean>()
      val loading: LiveData<Boolean> = _loading
 
-    fun getQuestions() {
+    private val _loadingMore = MutableLiveData<Boolean>()
+    val loadingMore: LiveData<Boolean> = _loadingMore
+
+    private var pageCount = 1
+
+    fun loadQuestions() {
         viewModelScope.launch {
             val result = questionRepository.loadQuestion(
-                1,
+                pageCount,
                 50,
                 "desc",
                 "",
@@ -42,14 +48,21 @@ class QuestionsViewModel @Inject constructor(val questionRepository: QuestionRep
                 }
                 is Result.Success -> {
                     _loading.value = false
-                    _questionsData.value = result.data.items
+                    _loadingMore.value = false
+                    _questionsData.value = Event(result.data.items)
                 }
             }
         }
     }
 
-    fun loadQuestionById(questionId: Int) {
-        _questionDetail.value = _questionsData.value?.find { it.questionId == questionId }
+    fun selectedQuestion(question: Question) {
+        _questionDetail.value = question
+    }
+
+    fun loadMoreQuestions() {
+        pageCount++
+        _loadingMore.value = true
+        loadQuestions()
     }
 
     companion object {

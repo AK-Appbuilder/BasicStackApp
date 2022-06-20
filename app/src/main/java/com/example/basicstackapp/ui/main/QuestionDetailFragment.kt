@@ -26,7 +26,6 @@ class QuestionDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val questionId = arguments?.getInt(ARG_QUESTION_ID, 0) ?: 0
-        viewModel.loadQuestionById(questionId)
 
         initObservers()
     }
@@ -45,9 +44,9 @@ class QuestionDetailFragment : Fragment() {
 
         fun newInstance(questionId: Int): QuestionDetailFragment {
             val questionFragment = QuestionDetailFragment().apply {
-                val args = Bundle()
-                args.putInt(ARG_QUESTION_ID, questionId)
-                arguments = args
+//                val args = Bundle()
+//                args.putInt(ARG_QUESTION_ID, questionId)
+//                arguments = args
             }
             return questionFragment
         }

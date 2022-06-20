@@ -29,7 +29,6 @@ class QuestionRepositoryImpl @Inject constructor(val apiService: StackApiService
             order,
             sortCondition,
             site,
-            tagged,
             filter,
             siteKey
         )

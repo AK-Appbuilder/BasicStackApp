@@ -6,14 +6,14 @@ import androidx.recyclerview.widget.*
 import com.example.basicstackapp.api.Question
 import com.example.basicstackapp.databinding.QuestionItemBinding
 
-class QuestionsAdapter (val onClick: (id: Int?)-> Unit): ListAdapter<Question, QuestionsAdapter.ViewHolder>(VoucherDiffCallback()) {
+class QuestionsAdapter (val onClick: (id: Question?)-> Unit): BaseRecyclerViewAdapter<Question, QuestionsAdapter.ViewHolder>() {
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: QuestionsAdapter.ViewHolder, position: Int) {
         val item = getItem(position)
         holder.bind(item)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): QuestionsAdapter.ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val binding = QuestionItemBinding.inflate(layoutInflater, parent, false)
         return ViewHolder(binding)
@@ -28,7 +28,7 @@ class QuestionsAdapter (val onClick: (id: Int?)-> Unit): ListAdapter<Question, Q
         ) {
             binding.question = item
             binding.root.setOnClickListener {
-                onClick.invoke(item.questionId)
+                onClick.invoke(item)
             }
             binding.executePendingBindings()
         }
@@ -36,12 +36,12 @@ class QuestionsAdapter (val onClick: (id: Int?)-> Unit): ListAdapter<Question, Q
 
 }
 
-class VoucherDiffCallback : DiffUtil.ItemCallback<Question>() {
-    override fun areItemsTheSame(oldItem: Question, newItem:Question): Boolean {
-        return oldItem.questionId == newItem.questionId
-    }
-
-    override fun areContentsTheSame(oldItem: Question, newItem: Question): Boolean {
-        return oldItem == newItem
-    }
-}
+//class VoucherDiffCallback : DiffUtil.ItemCallback<Question>() {
+//    override fun areItemsTheSame(oldItem: Question, newItem:Question): Boolean {
+//        return oldItem.questionId == newItem.questionId
+//    }
+//
+//    override fun areContentsTheSame(oldItem: Question, newItem: Question): Boolean {
+//        return oldItem == newItem
+//    }
+//}

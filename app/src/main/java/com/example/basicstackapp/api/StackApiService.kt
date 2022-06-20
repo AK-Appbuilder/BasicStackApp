@@ -13,7 +13,6 @@ interface StackApiService {
         @Query("order") order: String?,
         @Query("sort") sortCondition: String?,
         @Query("site") site: String?,
-        @Query("tagged") tagged: String?,
         @Query(value = "filter", encoded = true) filter: String?,
         @Query("key") siteKey: String?
     ): QuestionsResponse
