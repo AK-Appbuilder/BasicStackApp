@@ -1,10 +1,7 @@
 package com.example.basicstackapp.ui.main
 
 import android.os.Bundle
-import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -54,6 +51,15 @@ class QuestionFragment : Fragment() {
 
     }
 
+     override fun onResume() {
+        super.onResume()
+         setToolbarTitle(getString(R.string.title_questions))
+    }
+
+    private fun setToolbarTitle(title: String?) {
+      activity?.title = title
+    }
+
     private fun setupAdapter() {
         adapter = QuestionsAdapter(){ question ->
             question?.let {
@@ -61,8 +67,9 @@ class QuestionFragment : Fragment() {
                 viewModel.selectedQuestion(question)
 
                 parentFragmentManager.beginTransaction()
-                    .replace(R.id.container, QuestionDetailFragment.newInstance(it.questionId))
-                    .commitNow()
+                    .add(R.id.container, QuestionDetailFragment.newInstance(it.questionId))
+                    .addToBackStack(null)
+                    .commit()
             }
         }
 

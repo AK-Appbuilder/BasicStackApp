@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import com.example.basicstackapp.R
+import com.example.basicstackapp.api.Question
 import com.example.basicstackapp.databinding.FragmentDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -28,6 +30,15 @@ class QuestionDetailFragment : Fragment() {
         val questionId = arguments?.getInt(ARG_QUESTION_ID, 0) ?: 0
 
         initObservers()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        setToolbarTitle(getString(R.string.title_question_detail))
+    }
+
+    private fun setToolbarTitle(title: String?) {
+        activity?.title = title
     }
 
     private fun initObservers() {
