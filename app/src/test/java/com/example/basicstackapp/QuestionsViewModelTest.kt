@@ -1,6 +1,6 @@
 package com.example.basicstackapp
 
-import android.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.basicstackapp.api.Question
 import com.example.basicstackapp.api.QuestionsResponse
 import com.example.basicstackapp.api.Result
@@ -21,6 +21,9 @@ class QuestionsViewModelTest {
 
     @get:Rule
     val instantTaskExecutorRule = InstantTaskExecutorRule()
+
+    @get:Rule
+    val mainDispatcherRule = MainDispatcherRule()
 
     private lateinit var questionRepository: QuestionRepository
     private lateinit var questionsViewModel: QuestionsViewModel
