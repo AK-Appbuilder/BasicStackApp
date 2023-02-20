@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<SmellBaseline>
+  <ManuallySuppressedIssues/>
+  <CurrentIssues>
+    <ID>LongParameterList:Question.kt$Question$( @Json(name = "question_id") val questionId: Int, var title: String? = null, var body: String? = null, var owner: Owner? = null, @Json(name = "is_answered") var isAnswered: Boolean? = null, @Json(name = "view_count") var viewCount: Int? = null, @Json(name = "accepted_answer_id") var acceptedAnswerId: Int? = null, @Json(name = "answer_count") var answerCount: Int? = null, var score: Int? = null, @Json(name = "last_activity_date") var lastActivityDate: Int? = null, @Json(name = "creation_date") var creationDate: Int? = null, @Json(name = "last_edit_date") var lastEditDate: Int? = null, var link: String? = null )</ID>
+    <ID>LongParameterList:QuestionRepository.kt$QuestionRepository$( page: Int, pageSize: Int, order: String, sortCondition: String, site: String, filter: String, siteKey: String )</ID>
+    <ID>LongParameterList:StackApiService.kt$StackApiService$( @Query("page") page: Int, @Query("pagesize") pageSize: Int, @Query("order") order: String?, @Query("sort") sortCondition: String?, @Query("site") site: String?, @Query(value = "filter", encoded = true) filter: String?, @Query("key") siteKey: String? )</ID>
+    <ID>MagicNumber:MathUtils.kt$MathUtils$16</ID>
+    <ID>MagicNumber:MathUtils.kt$MathUtils$3</ID>
+    <ID>MagicNumber:MathUtils.kt$MathUtils$4</ID>
+    <ID>MagicNumber:MathUtils.kt$MathUtils$5</ID>
+    <ID>MagicNumber:MathUtils.kt$MathUtils$6</ID>
+    <ID>MagicNumber:MathUtils.kt$MathUtils$8</ID>
+    <ID>MagicNumber:QuestionsViewModel.kt$QuestionsViewModel$50</ID>
+    <ID>MaxLineLength:QuestionsAdapter.kt$QuestionsAdapter$class</ID>
+    <ID>PrintStackTrace:Result.kt$throwable</ID>
+    <ID>ReturnCount:MathUtils.kt$MathUtils$fun isPrime(a: Int): Boolean</ID>
+    <ID>SwallowedException:MathUtilsTest.kt$MathUtilsTest$e: IllegalArgumentException</ID>
+    <ID>SwallowedException:QuestionRepositoryImplTest.kt$QuestionRepositoryImplTest$e: Exception</ID>
+    <ID>TooGenericExceptionCaught:Result.kt$throwable: Throwable</ID>
+    <ID>TooManyFunctions:MathUtils.kt$MathUtils$MathUtils</ID>
+    <ID>UnnecessaryAbstractClass:RepositoriesModule.kt$RepositoriesModule$RepositoriesModule</ID>
+    <ID>UnusedPrivateMember:QuestionDetailFragment.kt$QuestionDetailFragment.Companion$private const val ARG_QUESTION_ID = "question_id"</ID>
+    <ID>UnusedPrivateMember:QuestionDetailFragment.kt$QuestionDetailFragment.Companion$questionId: Int</ID>
+    <ID>UnusedPrivateMember:QuestionRepositoryImplTest.kt$QuestionRepositoryImplTest$val expectedTagged = "kotlin"</ID>
+    <ID>WildcardImport:MathUtils.kt$import kotlin.math.*</ID>
+    <ID>WildcardImport:QuestionDetailFragment.kt$import android.view.*</ID>
+    <ID>WildcardImport:QuestionFragment.kt$import android.view.*</ID>
+    <ID>WildcardImport:QuestionFragment.kt$import androidx.fragment.app.*</ID>
+    <ID>WildcardImport:QuestionRepository.kt$import com.example.basicstackapp.api.*</ID>
+    <ID>WildcardImport:QuestionsAdapter.kt$import androidx.recyclerview.widget.*</ID>
+    <ID>WildcardImport:QuestionsViewModel.kt$import androidx.lifecycle.*</ID>
+  </CurrentIssues>
+</SmellBaseline>
