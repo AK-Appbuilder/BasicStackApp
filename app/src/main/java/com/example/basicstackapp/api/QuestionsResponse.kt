@@ -4,7 +4,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-class QuestionsResponse (
+class QuestionsResponse(
     @Json(name = "has_more")
     var hasMore: Boolean? = null,
     var items: List<Question> = emptyList(),

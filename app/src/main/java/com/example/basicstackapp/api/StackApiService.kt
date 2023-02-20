@@ -16,5 +16,4 @@ interface StackApiService {
         @Query(value = "filter", encoded = true) filter: String?,
         @Query("key") siteKey: String?
     ): QuestionsResponse
-
 }

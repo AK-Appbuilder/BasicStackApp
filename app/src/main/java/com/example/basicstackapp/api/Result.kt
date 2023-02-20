@@ -1,12 +1,10 @@
 package com.example.basicstackapp.api
 
-
 sealed class Result<out R> {
     data class Success<out T>(val data: T) : Result<T>()
     object Empty : Result<Nothing>()
     data class Error(val exception: Throwable) : Result<Nothing>()
     object Loading : Result<Nothing>()
-
 
     override fun toString(): String {
         return when (this) {
@@ -16,7 +14,6 @@ sealed class Result<out R> {
             Loading -> "Loading"
         }
     }
-
 }
 
 suspend fun <T> safeApiCall(apiCall: suspend () -> T): Result<T> {

@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.*
 import com.example.basicstackapp.api.Question
 import com.example.basicstackapp.databinding.QuestionItemBinding
 
-class QuestionsAdapter (val onClick: (id: Question?)-> Unit): BaseRecyclerViewAdapter<Question, QuestionsAdapter.ViewHolder>() {
+class QuestionsAdapter(val onClick: (id: Question?) -> Unit) : BaseRecyclerViewAdapter<Question, QuestionsAdapter.ViewHolder>() {
 
     override fun onBindViewHolder(holder: QuestionsAdapter.ViewHolder, position: Int) {
         val item = getItem(position)
@@ -33,10 +33,9 @@ class QuestionsAdapter (val onClick: (id: Question?)-> Unit): BaseRecyclerViewAd
             binding.executePendingBindings()
         }
     }
-
 }
 
-//class VoucherDiffCallback : DiffUtil.ItemCallback<Question>() {
+// class VoucherDiffCallback : DiffUtil.ItemCallback<Question>() {
 //    override fun areItemsTheSame(oldItem: Question, newItem:Question): Boolean {
 //        return oldItem.questionId == newItem.questionId
 //    }
@@ -44,4 +43,4 @@ class QuestionsAdapter (val onClick: (id: Question?)-> Unit): BaseRecyclerViewAd
 //    override fun areContentsTheSame(oldItem: Question, newItem: Question): Boolean {
 //        return oldItem == newItem
 //    }
-//}
+// }

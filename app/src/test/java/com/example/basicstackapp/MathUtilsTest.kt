@@ -1,10 +1,8 @@
-package com.example.basicstackapp;
-
+package com.example.basicstackapp
 
 import com.example.basicstackapp.common.MathUtils
 import org.junit.Assert.assertEquals
 import org.junit.Test
-
 
 class MathUtilsTest {
 
@@ -38,8 +36,6 @@ class MathUtilsTest {
         assertEquals(Double.NEGATIVE_INFINITY, MathUtils.divide(-1, 0), 0.0001)
         assertEquals(Double.NaN, MathUtils.divide(0, 0), 0.0001)
     }
-
-    
 
     @Test
     fun testIsPrime() {
@@ -143,6 +139,4 @@ class MathUtilsTest {
         assertEquals(Pair(0.0, -1.0), MathUtils.roots(1.0, 1.0, 0.0))
         assertEquals(Pair(Double.NaN, Double.NaN), MathUtils.roots(0.0, 0.0, 1.0))
     }
-
-
 }

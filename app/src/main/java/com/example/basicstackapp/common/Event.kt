@@ -29,7 +29,7 @@ open class Event<T>(private val content: T) {
     /**
      * Returns the content with default value  and prevents its use again.
      */
-    fun  getContentIfNotHandled(default: T): T {
+    fun getContentIfNotHandled(default: T): T {
         return if (hasBeenHandled) {
             default
         } else {
@@ -41,7 +41,7 @@ open class Event<T>(private val content: T) {
     /**
      * Returns the content and prevents its use again.
      */
-    fun  getContentIfNotHandled(): T? {
+    fun getContentIfNotHandled(): T? {
         return if (hasBeenHandled) {
             null
         } else {
@@ -69,4 +69,3 @@ class EventObserver<T>(private val onEventUnhandledContent: (T) -> Unit) : Obser
         }
     }
 }
-

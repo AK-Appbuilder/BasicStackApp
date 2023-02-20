@@ -1,54 +1,54 @@
-package com.example.basicstackapp.common;
+package com.example.basicstackapp.common
 
 import kotlin.math.*
 
 object MathUtils {
 
-    fun add(a:Int, b:Int) =a +b
+    fun add(a: Int, b: Int) = a + b
 
-    fun subtract(a:Int, b:Int) =a -b
+    fun subtract(a: Int, b: Int) = a - b
 
-    fun multiply(a:Int, b:Int) =a *b
+    fun multiply(a: Int, b: Int) = a * b
 
-    fun divide(a:Int, b:Int):Double =a.toDouble()/b.toDouble()
+    fun divide(a: Int, b: Int): Double = a.toDouble() / b.toDouble()
 
-    fun pow(base:Double, exponent:Double):Double =base.pow(exponent)
+    fun pow(base: Double, exponent: Double): Double = base.pow(exponent)
 
-    fun sqrt(a:Double):Double = a*a
+    fun sqrt(a: Double): Double = a * a
 
-    fun cbrt(a:Double):Double =
+    fun cbrt(a: Double): Double =
 
         cbrt(a)
 
-    fun round(a:Double):Long =
+    fun round(a: Double): Long =
 
         round(a)
 
-    fun ceil(a:Double):Double =
+    fun ceil(a: Double): Double =
 
         ceil(a)
 
-    fun floor(a:Double):Double =
+    fun floor(a: Double): Double =
 
         floor(a)
 
-    fun abs(a:Int):Int =
+    fun abs(a: Int): Int =
 
         abs(a)
 
-    fun max(a:Int, b:Int):Int =
+    fun max(a: Int, b: Int): Int =
 
         max(a, b)
 
-    fun min(a:Int, b:Int):Int =
+    fun min(a: Int, b: Int): Int =
 
         min(a, b)
 
-    fun signum(a:Int):Int =a.sign
+    fun signum(a: Int): Int = a.sign
 
-    fun gcd(a:Int, b:Int):
+    fun gcd(a: Int, b: Int):
 
-            Int {
+        Int {
         var x = a
         var y = b
         while (y != 0) {
@@ -59,15 +59,15 @@ object MathUtils {
         return x
     }
 
-    fun lcm(a:Int, b:Int):Int =
+    fun lcm(a: Int, b: Int): Int =
 
-        abs(a *b) /
+        abs(a * b) /
 
-                gcd(a, b)
+            gcd(a, b)
 
-    fun isPrime(a:Int):
+    fun isPrime(a: Int):
 
-            Boolean {
+        Boolean {
         if (a <= 1) return false
         if (a <= 3) return true
         if (a % 2 == 0 || a % 3 == 0) return false
@@ -79,21 +79,21 @@ object MathUtils {
         return true
     }
 
-    fun factorial(a:Int):
+    fun factorial(a: Int):
 
-            Long {
-        var result:Long = 1
+        Long {
+        var result: Long = 1
         for (i in 2..a) {
             result *= i.toLong()
         }
         return result
     }
 
-    fun fibonacci(a:Int):
+    fun fibonacci(a: Int):
 
-            Long {
-        var a1:Long = 0
-        var a2:Long = 1
+        Long {
+        var a1: Long = 0
+        var a2: Long = 1
         var i = 0
         while (i < a) {
             val temp = a1
@@ -104,30 +104,25 @@ object MathUtils {
         return a1
     }
 
-    fun isPalindrome(a:Int):Boolean =a.toString()==a.toString().
+    fun isPalindrome(a: Int): Boolean = a.toString() == a.toString()
+        .reversed()
 
-    reversed()
+    fun toBinary(a: Int): String = Integer.toBinaryString(a)
 
-    fun toBinary(a:Int):String =Integer.toBinaryString(a)
+    fun toOctal(a: Int): String = Integer.toOctalString(a)
 
-    fun toOctal(a:Int):String =Integer.toOctalString(a)
+    fun toHex(a: Int): String = Integer.toHexString(a)
 
-    fun toHex(a:Int):String =Integer.toHexString(a)
+    fun fromBinary(a: String): Int = Integer.parseInt(a, 2)
 
-    fun fromBinary(a:String):Int =Integer.parseInt(a,2)
+    fun fromOctal(a: String): Int = Integer.parseInt(a, 8)
 
-    fun fromOctal(a:String):Int =Integer.parseInt(a,8)
+    fun fromHex(a: String): Int = Integer.parseInt(a, 16)
 
-    fun fromHex(a:String):Int =Integer.parseInt(a,16)
-
-    fun roots(a:Double, b:Double, c:Double):Pair<Double, Double>
-
-    {
+    fun roots(a: Double, b: Double, c: Double): Pair<Double, Double> {
         val disc = b * b - 4 * a * c
         val x1 = (-b + sqrt(disc)) / (2 * a)
         val x2 = (-b - sqrt(disc)) / (2 * a)
         return Pair(x1, x2)
     }
-
-
 }

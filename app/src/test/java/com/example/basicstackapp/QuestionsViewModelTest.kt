@@ -51,7 +51,7 @@ class QuestionsViewModelTest {
                 QuestionsViewModel.QUESTION_FILTER,
                 QuestionsViewModel.API_KEY
             )
-        } returns Result.Success(QuestionsResponse( items = questions)) as Result<QuestionsResponse>
+        } returns Result.Success(QuestionsResponse(items = questions)) as Result<QuestionsResponse>
 
         questionsViewModel.loadQuestions()
 
@@ -85,7 +85,7 @@ class QuestionsViewModelTest {
                 QuestionsViewModel.QUESTION_FILTER,
                 QuestionsViewModel.API_KEY
             )
-        } returns Result.Success(QuestionsResponse(items=questions))
+        } returns Result.Success(QuestionsResponse(items = questions))
 
         questionsViewModel.loadMoreQuestions()
 

@@ -4,7 +4,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-class Question (
+class Question(
     @Json(name = "question_id")
     val questionId: Int,
 

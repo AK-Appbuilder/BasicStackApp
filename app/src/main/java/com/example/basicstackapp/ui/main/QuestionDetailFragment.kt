@@ -42,9 +42,8 @@ class QuestionDetailFragment : Fragment() {
     private fun initObservers() {
         viewModel.question.observe(viewLifecycleOwner) {
             binding.tvQuestionDetail.text = it.title
-            binding.webview.loadData(it.body!!, "text/html", "UTF-8");
+            binding.webview.loadData(it.body!!, "text/html", "UTF-8")
         }
-
     }
 
     companion object {
@@ -59,6 +58,5 @@ class QuestionDetailFragment : Fragment() {
             }
             return questionFragment
         }
-
     }
 }

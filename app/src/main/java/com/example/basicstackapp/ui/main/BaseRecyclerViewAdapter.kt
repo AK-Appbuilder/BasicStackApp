@@ -3,7 +3,7 @@ package com.example.basicstackapp.ui.main
 import androidx.recyclerview.widget.RecyclerView
 import com.example.basicstackapp.R
 
-abstract class BaseRecyclerViewAdapter<T, R: RecyclerView.ViewHolder> : RecyclerView.Adapter<R>() {
+abstract class BaseRecyclerViewAdapter<T, R : RecyclerView.ViewHolder> : RecyclerView.Adapter<R>() {
 
     private val itemsList: MutableList<T> = mutableListOf()
 
@@ -11,7 +11,6 @@ abstract class BaseRecyclerViewAdapter<T, R: RecyclerView.ViewHolder> : Recycler
         itemsList.addAll(list)
         notifyDataSetChanged()
     }
-
 
     open fun replaceList(list: List<T>) {
         itemsList.clear()
@@ -25,7 +24,7 @@ abstract class BaseRecyclerViewAdapter<T, R: RecyclerView.ViewHolder> : Recycler
 
     fun getItem(position: Int): T {
 //        if (position >= 0 && position < itemsList.size)
-            return itemsList[position]
+        return itemsList[position]
 //        else return null
     }
 

@@ -12,14 +12,10 @@ import kotlinx.coroutines.test.TestCoroutineScope
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.After
 import org.junit.Assert.assertEquals
-import org.junit.Assert.assertThrows
 import org.junit.Rule
 import org.junit.Test
-
 import retrofit2.HttpException
-import retrofit2.http.Query
 import java.io.IOException
-import kotlin.math.exp
 
 class QuestionRepositoryImplTest {
 
@@ -96,8 +92,6 @@ class QuestionRepositoryImplTest {
             assertEquals(expectedResponse, result.data)
         }
 
-
-
     fun `loadQuestion should throw IOException when network call fails`() = testScope.runBlockingTest {
         val expectedPage = 1
         val expectedPageSize = 10
@@ -134,7 +128,6 @@ class QuestionRepositoryImplTest {
         )
     }
 
-
     fun `loadQuestion should throw HttpException when API call returns an error response`() =
         testScope.runBlockingTest {
             val expectedPage = 1
@@ -170,15 +163,12 @@ class QuestionRepositoryImplTest {
             )
         }
 
-
     @After
     fun cleanUp() {
         try {
             testScope.cleanupTestCoroutines()
         } catch (e: Exception) {
-            //Do something here
+            // Do something here
         }
     }
-
-
 }

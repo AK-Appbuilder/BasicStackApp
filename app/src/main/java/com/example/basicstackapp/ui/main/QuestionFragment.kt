@@ -19,12 +19,12 @@ class QuestionFragment : Fragment() {
     private lateinit var binding: FragmentQuestionsBinding
     private var adapter: QuestionsAdapter? = null
 
-
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding =  FragmentQuestionsBinding.inflate(inflater, container, false)
+        binding = FragmentQuestionsBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
     }
@@ -37,31 +37,33 @@ class QuestionFragment : Fragment() {
     }
 
     private fun initObservers() {
-     viewModel.questionsData.observe(viewLifecycleOwner, EventObserver{
-         adapter?.submitList(it)
-     })
+        viewModel.questionsData.observe(
+            viewLifecycleOwner,
+            EventObserver {
+                adapter?.submitList(it)
+            }
+        )
 
-        viewModel.loading.observe(viewLifecycleOwner){
+        viewModel.loading.observe(viewLifecycleOwner) {
             binding.loader.visibleIfTrue(it)
         }
 
-        viewModel.loadingMore.observe(viewLifecycleOwner){
+        viewModel.loadingMore.observe(viewLifecycleOwner) {
             binding.nextLoadingPage.visibleIfTrue(it)
         }
-
     }
 
-     override fun onResume() {
+    override fun onResume() {
         super.onResume()
-         setToolbarTitle(getString(R.string.title_questions))
+        setToolbarTitle(getString(R.string.title_questions))
     }
 
     private fun setToolbarTitle(title: String?) {
-      activity?.title = title
+        activity?.title = title
     }
 
     private fun setupAdapter() {
-        adapter = QuestionsAdapter(){ question ->
+        adapter = QuestionsAdapter() { question ->
             question?.let {
 
                 viewModel.selectedQuestion(question)
@@ -75,7 +77,7 @@ class QuestionFragment : Fragment() {
 
         binding.listview.adapter = adapter
 
-        binding.listview.addOnScrollListener(object: RecyclerView.OnScrollListener() {
+        binding.listview.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             var loading = true
 
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
@@ -83,27 +85,25 @@ class QuestionFragment : Fragment() {
 
                 val layoutManager = binding.listview.layoutManager as LinearLayoutManager
 
-                if (dy > 0) { //check for scroll down
-                    val visibleItemCount = layoutManager.childCount;
-                    val totalItemCount = layoutManager.itemCount;
-                    val pastVisiblesItems = layoutManager.findFirstVisibleItemPosition();
+                if (dy > 0) { // check for scroll down
+                    val visibleItemCount = layoutManager.childCount
+                    val totalItemCount = layoutManager.itemCount
+                    val pastVisiblesItems = layoutManager.findFirstVisibleItemPosition()
 
                     if (loading) {
                         if ((visibleItemCount + pastVisiblesItems) >= totalItemCount) {
-                            loading = false;
+                            loading = false
                             viewModel.loadMoreQuestions()
 
-                            loading = true;
+                            loading = true
                         }
                     }
                 }
             }
-
         })
     }
 
     companion object {
         fun newInstance() = QuestionFragment()
     }
-
 }

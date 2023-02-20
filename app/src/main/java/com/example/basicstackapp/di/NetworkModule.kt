@@ -1,9 +1,6 @@
 package com.example.basicstackapp.di
 
 import com.example.basicstackapp.BuildConfig
-import javax.inject.Singleton
-import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.Retrofit
 import com.example.basicstackapp.api.StackApiService
 import com.example.basicstackapp.common.Constants.BASE_URL
 import com.facebook.stetho.okhttp3.StethoInterceptor
@@ -14,7 +11,10 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -31,12 +31,14 @@ class NetworkModule {
     @Provides
     @Singleton
     fun provideOkhttpClient() =
-        OkHttpClient.Builder().addInterceptor(HttpLoggingInterceptor().apply {
-            level = HttpLoggingInterceptor.Level.NONE
-            if (BuildConfig.DEBUG) {
-                level = HttpLoggingInterceptor.Level.BODY
+        OkHttpClient.Builder().addInterceptor(
+            HttpLoggingInterceptor().apply {
+                level = HttpLoggingInterceptor.Level.NONE
+                if (BuildConfig.DEBUG) {
+                    level = HttpLoggingInterceptor.Level.BODY
+                }
             }
-        }).addNetworkInterceptor(StethoInterceptor()).build()
+        ).addNetworkInterceptor(StethoInterceptor()).build()
 
     @Singleton
     @Provides
@@ -46,7 +48,6 @@ class NetworkModule {
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             .client(okHttpClient)
             .build()
-
 
     @Provides
     @Singleton

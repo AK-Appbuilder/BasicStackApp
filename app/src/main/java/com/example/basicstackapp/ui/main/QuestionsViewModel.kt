@@ -13,13 +13,13 @@ import javax.inject.Inject
 class QuestionsViewModel @Inject constructor(val questionRepository: QuestionRepository) : ViewModel() {
 
     private val _questionsData = MutableLiveData<Event<List<Question>>>()
-     val questionsData: LiveData<Event<List<Question>>> = _questionsData
+    val questionsData: LiveData<Event<List<Question>>> = _questionsData
 
     private val _questionDetail = MutableLiveData<Question>()
     val question: LiveData<Question> = _questionDetail
 
     private val _loading = MutableLiveData<Boolean>()
-     val loading: LiveData<Boolean> = _loading
+    val loading: LiveData<Boolean> = _loading
 
     private val _loadingMore = MutableLiveData<Boolean>()
     val loadingMore: LiveData<Boolean> = _loadingMore
@@ -36,7 +36,6 @@ class QuestionsViewModel @Inject constructor(val questionRepository: QuestionRep
                 "stackoverflow",
                 QUESTION_FILTER, API_KEY
             )
-
 
             when (result) {
                 Result.Empty -> {}
@@ -68,5 +67,4 @@ class QuestionsViewModel @Inject constructor(val questionRepository: QuestionRep
         const val QUESTION_FILTER = "!9Z(-wwYGT"
         const val API_KEY = "xEJDRSvuLw*OoFv5LlJAKA(("
     }
-
 }
