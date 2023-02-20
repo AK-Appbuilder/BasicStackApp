@@ -1,9 +1,11 @@
 package com.example.basicstackapp.ui.main
 
+import android.util.Log
 import androidx.lifecycle.*
 import com.example.basicstackapp.api.Question
 import com.example.basicstackapp.api.Result
 import com.example.basicstackapp.common.Event
+import com.example.basicstackapp.common.Keys
 import com.example.basicstackapp.repository.QuestionRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -27,6 +29,8 @@ class QuestionsViewModel @Inject constructor(val questionRepository: QuestionRep
     private var pageCount = 1
 
     fun loadQuestions() {
+
+        Log.d("test", Keys.cipherKey())
         viewModelScope.launch {
             val result = questionRepository.loadQuestion(
                 pageCount,
