@@ -48,7 +48,6 @@ class QuestionsViewModelTest {
                 "desc",
                 "",
                 "stackoverflow",
-                "",
                 QuestionsViewModel.QUESTION_FILTER,
                 QuestionsViewModel.API_KEY
             )
@@ -83,7 +82,6 @@ class QuestionsViewModelTest {
                 "desc",
                 "",
                 "stackoverflow",
-                "",
                 QuestionsViewModel.QUESTION_FILTER,
                 QuestionsViewModel.API_KEY
             )

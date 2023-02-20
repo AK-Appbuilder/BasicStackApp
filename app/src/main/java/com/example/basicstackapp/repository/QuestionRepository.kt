@@ -6,7 +6,7 @@ import javax.inject.Inject
 interface QuestionRepository {
     suspend fun loadQuestion(
         page: Int, pageSize: Int, order: String, sortCondition: String,
-        site: String, tagged: String, filter: String, siteKey: String
+        site: String, filter: String, siteKey: String
     ): Result<QuestionsResponse>
 }
 
@@ -19,7 +19,6 @@ class QuestionRepositoryImpl @Inject constructor(val apiService: StackApiService
         order: String,
         sortCondition: String,
         site: String,
-        tagged: String,
         filter: String,
         siteKey: String
     ) = safeApiCall {
