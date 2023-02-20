@@ -1,0 +1,87 @@
+apply plugin : 'jacoco'
+
+def androidExclusion = [
+    '**/databinding/**/*.*',
+    '**/android/databinding/*Binding.*',
+    '**/BR.*',
+    '**/R.*',
+    '**/R$*.*',
+    '**/BuildConfig.*',
+    '**/Manifest*.*',
+    '**/*_MembersInjector.*',
+    '**/Dagger*Component.*',
+    '**/Dagger*Component$Builder.*',
+    '**/*Module_*Factory.*',
+    '**/*Fragment*.*',
+    '**/*Activity*.*',
+    '**/*BottomSheet*.*',
+    '**/*Adapter*.*',
+    '**/*ViewPager*.*',
+    '**/*ViewHolder*.*',
+    '**/*Module*.*',
+    '**/widget/**/*.*',
+    '**/anim/**/*.*',
+    '**/extention/**/*.*',
+    '**/common/**/*.*',
+    '**/environment/**/*.*',
+    '**/retrofit/**/*.*',
+    '**/dialog/**/*.*',
+    '**/di/**/*.*',
+    '**/helper/**/*.*',
+    '**/analytics/**/*.*',
+    '**/model/**/*.*',
+    '**/recyclerview/**/*.*',
+    '**/*DataSource*.*',
+    '**/*Mapper*.*',
+    '**/*ViewExt*.*',
+    '**/*Util*.*',
+    '**/utils/**/*.*',
+    '**/*Converters*.*',
+    '**/*AppApplication*.*',
+    '**/*Constant*.*',
+    '**/navhost/**/*.*',
+    '**/ui/**/*.*',
+    '**/database/**/*.*',
+    '**/firebase/**/*.*',
+    '**/notification/**/*.*',
+    '**/service/**/*.*',
+]
+
+jacoco {
+    toolVersion = '0.8.7'
+}
+
+task getCoverage(type: JacocoReport, dependsOn: 'testDebugUnitTest') {
+    group = "Reporting"
+    description = "Generate Jacoco coverage reports after running tests."
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+    getClassDirectories().setFrom(fileTree(
+        dir: 'build/intermediates/asm_instrumented_project_classes/debug',
+        excludes: androidExclusion
+
+    ))
+    getSourceDirectories().setFrom(files('src/main/java'))
+    getExecutionData().setFrom(files('build/jacoco/testDebugUnitTest.exec'))
+}
+
+// task for coverage rule
+task jacocoTestCoverageVerification(type: JacocoCoverageVerification, dependsOn: 'getCoverage') {
+    getClassDirectories().setFrom(fileTree(
+        dir: 'build/intermediates/asm_instrumented_project_classes/debug',
+        excludes: androidExclusion
+
+    ))
+    getSourceDirectories().setFrom(files('src/main/java'))
+    getExecutionData().setFrom(files('build/jacoco/testDebugUnitTest.exec'))
+    violationRules {
+        failOnViolation = true
+        rule {
+            limit {
+                minimum = 0.27
+            }
+        }
+    }
+}

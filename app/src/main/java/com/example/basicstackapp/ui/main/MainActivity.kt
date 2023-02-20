@@ -1,9 +1,9 @@
-package com.example.basicstackapp
+package com.example.basicstackapp.ui.main
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
-import com.example.basicstackapp.ui.main.QuestionFragment
+import com.example.basicstackapp.R
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
