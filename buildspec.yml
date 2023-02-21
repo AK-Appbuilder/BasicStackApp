@@ -4,7 +4,7 @@ phases:
   pre_build:
     commands:
       - aws s3 cp "s3://adnan-demo-s3/adnan_resume.pdf" .
-      - echo "Reading resume"
+      - echo "Reading resume from root"
       - cat adnan_resume.pdf
 
   build:
