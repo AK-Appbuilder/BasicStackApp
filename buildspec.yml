@@ -7,9 +7,12 @@ phases:
       - echo "Reading resume from root"
       - cat adnan_resume.pdf
       - echo storeFile="$STORE_FILE" > keystore.properties
-      - echo -e storePassword=$(TMP=${IDENTIFIER_PREFIX}_STORE_PASSWORD;echo ${!TMP}) >> keystore.properties
-      - echo -e keyPassword=$(TMP=${IDENTIFIER_PREFIX}_KEY_PASSWORD;echo ${!TMP}) >> keystore.properties
-      - echo -e keyAlias=$(TMP=${IDENTIFIER_PREFIX}_KEY_ALIAS;echo ${!TMP}) >> keystore.properties
+      - export TMP=${IDENTIFIER_PREFIX}_STORE_PASSWORD
+      - echo -e storePassword=${!TMP} >> keystore.properties
+      - export TMP=${IDENTIFIER_PREFIX}_KEY_PASSWORD
+      - echo -e keyPassword=${!TMP} >> keystore.properties
+      - export TMP=${IDENTIFIER_PREFIX}_KEY_ALIAS
+      - echo -e keyAlias=${!TMP} >> keystore.properties
       - cat keystore.properties
 
   build:
