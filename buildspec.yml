@@ -6,6 +6,11 @@ phases:
       - aws s3 cp "s3://adnan-demo-s3/adnan_resume.pdf" .
       - echo "Reading resume from root"
       - cat adnan_resume.pdf
+      - echo storeFile="$STORE_FILE" > keystore.properties
+      - echo -e storePassword=$(TMP=${IDENTIFIER_PREFIX}_STORE_PASSWORD;echo ${!TMP}) >> keystore.properties
+      - echo -e keyPassword=$(TMP=${IDENTIFIER_PREFIX}_KEY_PASSWORD;echo ${!TMP}) >> keystore.properties
+      - echo -e keyAlias=$(TMP=${IDENTIFIER_PREFIX}_KEY_ALIAS;echo ${!TMP}) >> keystore.properties
+      - cat keystore.properties
 
   build:
     commands:
