@@ -17,7 +17,6 @@ interface QuestionRepository {
 
 class QuestionRepositoryImpl @Inject constructor(val apiService: StackApiService) :
     QuestionRepository {
-
     override suspend fun loadQuestion(
         page: Int,
         pageSize: Int,
